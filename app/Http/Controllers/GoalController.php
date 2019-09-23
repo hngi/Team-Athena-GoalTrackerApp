@@ -55,9 +55,16 @@ class GoalController extends Controller
      * @param  \App\Goal  $goal
      * @return \Illuminate\Http\Response
      */
-    public function show(Goal $goal)
+    public function show($id)
     {
-        //
+        try {
+            $goal = Goal::findOrFail($id);
+            logger('Showing ' . $goal->title);
+            return response()->json(['status' => 'success', 'message' => 'goal detail found.', 'data' => $goal->toArray()], 200);
+        } catch (Exception $e) {
+            logger()->error($e->getMessage());
+            return response()->json(['status' => 'failed', 'message' => $e->getMessage()], 500);
+        }
     }
 
     /**
