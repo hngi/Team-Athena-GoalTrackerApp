@@ -82,12 +82,9 @@ class TodoController extends Controller
     public function update(Request $request, Todo $todo)
     {
         try {
-            $todo = Todo::where(['id' => $todo->id])->update($request->all());
-            if ($todo) {
-                logger($todo->task + 'Updated successfully ' . $todo);
-                return redirect()->back();
-            }
-            throw new Exception('Failed to update todo' . $request->all());
+            Todo::findOrFail($todo->id)->update($request->all());
+            logger($todo->task+'Updated successfully ' . $todo);
+            return redirect()->back();
         } catch (Exception $e) {
             Log::warning($e->getMessage());
             return redirect()->back()->withErrors($e->getMessage());
@@ -103,9 +100,12 @@ class TodoController extends Controller
     public function destroy(Todo $todo)
     {
         try {
-            Todo::where(['id' => $todo->id])->delete();
+            $todo = Todo::findOrFail($todo->id)->delete();
+            logger($todo->task . ' deleted successfully ' . $todo);
+            return redirect()->back();
         } catch (Exception $e) {
             Log::warning($e->getMessage());
+            return redirect()->back()->withErrors($e->getMessage());
         }
     }
 }
