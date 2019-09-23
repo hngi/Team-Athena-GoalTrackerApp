@@ -11,4 +11,8 @@ class Todo extends Model
     public function getTaskAttribute($value) {
         return ucfirst($value);
     }
+
+    public function goal() {
+        return $this->hasOne(Goal::class);
+    }
 }

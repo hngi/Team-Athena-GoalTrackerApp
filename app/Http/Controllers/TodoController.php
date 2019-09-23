@@ -16,7 +16,7 @@ class TodoController extends Controller
     public function index()
     {
         $todos = Todo::all();
-        logger('Todo data obtained successfully' . $todos);
+        logger('Todo data obtained successfully');
         return response()->json(['status' => 'success', 'message' => 'Todo data obtained successfully.', 'data' => $todos->toArray()], 200);
     }
 

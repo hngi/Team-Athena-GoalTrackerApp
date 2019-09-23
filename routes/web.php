@@ -20,3 +20,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/todo','TodoController');
+
+Route::resource('/goal','GoalController');

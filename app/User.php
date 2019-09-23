@@ -40,4 +40,8 @@ class User extends Authenticatable
     public function getNameAttribute($value) {
         return ucfirst($value);
     }
+
+    public function goal() {
+        return $this->hasOne(Goal::class);
+    }
 }
