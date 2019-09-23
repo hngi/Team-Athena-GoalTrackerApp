@@ -105,6 +105,13 @@ class GoalController extends Controller
      */
     public function destroy(Goal $goal)
     {
-        //
+        try {
+            $goal = Goal::findOrFail($id)->delete();
+            logger($goal->title . ' deleted successfully ' . $goal);
+            return response()->json(['status' => 'success', 'message' => $goal->title . ' deleted successfully', 'data' => $goal->toArray()], 200);
+        } catch (Exception $e) {
+            Log::warning($e->getMessage());
+            return response()->json(['status' => 'failed', 'message' => $e->getMessage()], 500);
+        }
     }
 }
