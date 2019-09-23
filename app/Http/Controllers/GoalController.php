@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Goal;
+use App\Http\Requests\GoalRequest;
 use Illuminate\Http\Request;
 
 class GoalController extends Controller
@@ -34,19 +35,19 @@ class GoalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(GoalRequest $request)
     {
         try {
             $goal = Goal::create($request->all());
             if ($goal) {
-                logger('Goal saved successfully ' . $goal,);
+                logger('Goal saved successfully ' . $goal, );
                 return response()->json(['status' => 'success', 'message' => 'Goal saved successfully.', 'data' => $goal->toArray()], 200);
             }
             throw new Exception('Failed to save goal' . $request->all());
         } catch (Exception $e) {
             logger()->error($e->getMessage());
             return response()->json(['status' => 'failed', 'message' => $e->getMessage()], 500);
-        }        
+        }
     }
 
     /**
@@ -85,7 +86,7 @@ class GoalController extends Controller
      * @param  \App\Goal  $goal
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(GoalRequest $request, $id)
     {
         try {
             $goal = Goal::findOrFail($id)->update($request->all());
@@ -103,7 +104,7 @@ class GoalController extends Controller
      * @param  \App\Goal  $goal
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Goal $goal)
+    public function destroy($id)
     {
         try {
             $goal = Goal::findOrFail($id)->delete();

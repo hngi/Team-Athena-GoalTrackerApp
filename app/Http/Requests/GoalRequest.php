@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TodoRequest extends FormRequest
+class GoalRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class TodoRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,9 +24,8 @@ class TodoRequest extends FormRequest
     public function rules()
     {
         return [
-            'goal_id' => 'required|integer|exists:goals,id',
-            'task' => 'required|string',
-            'status' => 'in:Pending,Completed,Archived',
+            'user_id' => 'required|integer|exists:users,id',
+            'title' => 'required|string',
         ];
     }
 }

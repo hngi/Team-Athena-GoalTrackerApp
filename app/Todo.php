@@ -8,11 +8,13 @@ class Todo extends Model
 {
     protected $fillable = ['goal_id', 'task', 'status', 'description'];
 
-    public function getTaskAttribute($value) {
+    public function getTaskAttribute($value)
+    {
         return ucfirst($value);
     }
 
-    public function goal() {
+    public function goal()
+    {
         return $this->hasOne(Goal::class);
     }
 }
