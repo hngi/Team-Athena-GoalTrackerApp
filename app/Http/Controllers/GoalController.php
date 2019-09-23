@@ -85,9 +85,16 @@ class GoalController extends Controller
      * @param  \App\Goal  $goal
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Goal $goal)
+    public function update(Request $request, $id)
     {
-        //
+        try {
+            $goal = Goal::findOrFail($id)->update($request->all());
+            logger($goal->tile . ' updated successfully ' . $goal);
+            return response()->json(['status' => 'success', 'message' => $goal->title . ' updated successfully', 'data' => $goal->toArray()], 200);
+        } catch (Exception $e) {
+            Log::warning($e->getMessage());
+            return response()->json(['status' => 'failed', 'message' => $e->getMessage()], 500);
+        }
     }
 
     /**
