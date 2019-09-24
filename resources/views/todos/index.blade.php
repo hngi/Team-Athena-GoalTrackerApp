@@ -13,18 +13,18 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <form method="POST" action="{{url('todo')}}">
+                    <form>
                         <input type="hidden" name="goal_id" value="1">
                         @csrf
                     <div class="form-group">
-                        <label for="action">Action</label>
-                            <input type="text" class="form-control" name="task" placeholder="Working out">
+                        <label>Action</label>
+                            <input type="text" class="form-control dt" id="task" name="task" placeholder="Working out">
                         </div>
                     <div class="form-group">
-                        <label for="description">Description</label>
-                        <textarea class="form-control" name="description" id="description" rows="3"></textarea>
+                        <label>Description</label>
+                        <textarea class="form-control" id="description" name="description" rows="3"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-success">Add To Goal</button>
+                    <button class="btn btn-success" id="create">Add To Goal</button>
                     </form>
                 </div>
             </div>
@@ -75,4 +75,8 @@
         
     </div> 
 </div>
+@push('additions')
+<script src="{{ asset('js/todo.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+@endpush
 @endsection
