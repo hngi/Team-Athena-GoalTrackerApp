@@ -44,26 +44,24 @@
                                       <th style="width:50px">Details</th>
                                     </tr>
                                   </thead>
-                                  <tbody>
+                                  <tbody id="todo">
                                         @foreach ($todos as $todo)
-                                    <tr>
+                                    <tr id="todo_id_{{ $todo->id }}">
                                         <td><input type="checkbox">
                                             <i class="dark-white"></i>
                                         </td>
                                         <td>{{$todo->task}}</td>
 
                                         <td style="width:200px">
-                                                <span>
-                                                <a class="btn btn-outline-info btn-xs" title="View Teacher" style="display: inline-block"  href="{{route('todo.show',$todo->id)}}">
+                                                <a href="javascript:void(0)" class="btn btn-outline-info btn-xs" data-id="{{$todo->id}}" title="View Todo">
                                                     <i class="fa fa-plus"></i> View 
                                                 </a>
-                                                <a class="btn btn-outline-warning btn-xs" style="display: inline-block" >
+                                                <a href="javascript:void(0)" class="btn btn-outline-warning btn-xs" data-id="{{$todo->id}}" title="Edit Todo">
                                                         <i class="fa fa-plus"></i> Edit
                                                     </a>
-                                                <a class="btn btn-outline-danger btn-xs" style="display: inline-block" >
+                                                <a href="javascript:void(0)" class="btn btn-outline-danger btn-xs delete" data-id="{{$todo->id}}"title="Delete Todo" >
                                                         <i class="fa fa-plus"></i> Del 
                                                     </a>
-                                                </span>
                                       </td>
                                     </tr>
                                     @endforeach

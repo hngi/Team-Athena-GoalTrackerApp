@@ -15,7 +15,7 @@ class TodoController extends Controller
      */
     public function index()
     {
-        $todos = Todo::all();
+        $todos = Todo::orderBy('created_at','desc')->get();
         logger('Todo data obtained successfully');
         return view('todos.index', compact('todos'));
         // return response()->json(['status' => 'success', 'message' => 'Todo data obtained successfully.', 'data' => $todos->toArray()], 200);
