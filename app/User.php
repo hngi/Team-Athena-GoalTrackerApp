@@ -43,6 +43,6 @@ class User extends Authenticatable
 
     public function goal()
     {
-        return $this->hasOne(Goal::class);
+        return $this->hasMany(Goal::class);
     }
 }
