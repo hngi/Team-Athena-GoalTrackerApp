@@ -1,0 +1,64 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: gray;
+}
+
+.Sign-up {
+    width: 400px;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.4);
+    background: plum;
+    padding: 25px;
+    margin: 8% auto;
+    text-align: center;
+}
+
+.Sign-up h1 {
+    color: rgb(47, 0, 255);
+    margin-bottom: 30px;
+}
+
+.Input-box {
+    border-radius: 20px;
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    border: 1px solid #999:
+    outline: none;
+}
+
+button {
+    color: #ffffff;
+    width: 100%;
+    padding: 3%;
+    border-radius: 20px;
+    font-size: 15px;
+    margin: 10px 0;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.Signup-btn {
+    background-color: #1c8adb;
+}
+
+.google-btn {
+    background-color: #21afde;
+}
+
+hr {
+    margin-top: 20px;
+    width: 80%;
+}
+
+.or {
+    background: #ffffff;
+    width: 30px;
+    margin: -19px auto 10px;
+}
+
+.Signin {
+    background-color: #1c8adb;
+}
