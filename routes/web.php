@@ -17,8 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['as' => '', 'middleware' => ['auth']], function () {
+    Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('/todo', 'TodoController');
+    Route::resource('/todo', 'TodoController');
 
-Route::resource('/goal', 'GoalController');
+    Route::resource('/goal', 'GoalController');
+});
