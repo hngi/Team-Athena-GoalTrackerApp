@@ -13,18 +13,18 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <form method="POST" action="{{url('todo')}}">
+                    <form>
                         <input type="hidden" name="goal_id" value="1">
                         @csrf
                     <div class="form-group">
-                        <label for="action">Action</label>
-                            <input type="text" class="form-control" name="task" placeholder="Working out">
+                        <label>Action</label>
+                            <input type="text" class="form-control dt" id="task" name="task" placeholder="Working out">
                         </div>
                     <div class="form-group">
-                        <label for="description">Description</label>
-                        <textarea class="form-control" name="description" id="description" rows="3"></textarea>
+                        <label>Description</label>
+                        <textarea class="form-control" id="description" name="description" rows="3"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-success">Add To Goal</button>
+                    <button class="btn btn-success" id="create">Add To Goal</button>
                     </form>
                 </div>
             </div>
@@ -44,26 +44,24 @@
                                       <th style="width:50px">Details</th>
                                     </tr>
                                   </thead>
-                                  <tbody>
+                                  <tbody id="todo">
                                         @foreach ($todos as $todo)
-                                    <tr>
+                                    <tr id="todo_id_{{ $todo->id }}">
                                         <td><input type="checkbox">
                                             <i class="dark-white"></i>
                                         </td>
                                         <td>{{$todo->task}}</td>
 
                                         <td style="width:200px">
-                                                <span>
-                                                <a class="btn btn-outline-info btn-xs" title="View Teacher" style="display: inline-block"  href="{{route('todo.show',$todo->id)}}">
+                                                <a href="javascript:void(0)" class="btn btn-outline-info btn-xs" data-id="{{$todo->id}}" title="View Todo">
                                                     <i class="fa fa-plus"></i> View 
                                                 </a>
-                                                <a class="btn btn-outline-warning btn-xs" style="display: inline-block" >
+                                                <a href="javascript:void(0)" class="btn btn-outline-warning btn-xs" data-id="{{$todo->id}}" title="Edit Todo">
                                                         <i class="fa fa-plus"></i> Edit
                                                     </a>
-                                                <a class="btn btn-outline-danger btn-xs" style="display: inline-block" >
+                                                <a href="javascript:void(0)" class="btn btn-outline-danger btn-xs delete" data-id="{{$todo->id}}"title="Delete Todo" >
                                                         <i class="fa fa-plus"></i> Del 
                                                     </a>
-                                                </span>
                                       </td>
                                     </tr>
                                     @endforeach
@@ -75,4 +73,8 @@
         
     </div> 
 </div>
+@push('additions')
+<script src="{{ asset('js/todo.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+@endpush
 @endsection
