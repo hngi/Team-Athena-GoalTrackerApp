@@ -1,0 +1,144 @@
+body{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 100%;
+}
+header{
+    background-color: rgb(0, 168, 232);
+    width: 100%;
+    min-height: 80px;
+    position: relative;
+    top: 0;
+}
+.top-botton{
+   position: absolute;
+   right: 5px;
+}
+.toggle{
+    color: black;
+    background-color: rgb(0, 168, 232);
+    border: none;
+    height: 30px;
+    font-size: 1.2rem;
+}
+.toggle.active{
+    border: 3px solid white;
+    color: black;
+    background-color: white;
+    border-radius: 2px;
+}
+.container{
+    width: 80%;
+    min-height: 550px;
+    margin: 10px auto;
+}
+.welcome-msg{
+    width: 100%;
+    
+}
+#image{
+    display: block;
+    width: 100%;
+    height: 500px;
+}
+#container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 600px;
+    
+}
+.form-wrap{
+    width: 50%;
+    height: 500px;
+    margin: 0 auto;
+}
+#form-wrap{
+    width: 100%;
+}
+.form-head{
+    text-align: center;
+}
+
+.form{
+    margin: 50px auto;
+    width: 80%;
+}
+.label{
+    margin: 0;
+    text-align: left;
+
+}
+.input{
+    width: 98%;
+    margin-bottom:10px; 
+    padding-bottom: 0px;
+    padding-left: 5px;
+    height: 40px;
+}
+
+#btn{
+    width: 100%;
+    text-align: center;
+    color: white;
+    background-color:rgb(229, 89, 52);
+    height: 40px;
+    font-size: 1.5rem;
+    text-transform: capitalize;
+    border: none;
+    border-radius: 2px;
+}
+#btn:hover{
+    color: rgb(229, 89, 52);
+    background-color: #f1f1f1;
+    border: 2px solid rgb(229, 89, 52);
+}
+.text{
+    font-size: 0.8rem;
+    color: grey;
+    text-align: center;
+    margin-top: 10px;
+}
+
+a{
+    margin-top: 15px;
+    text-align: center;
+    text-decoration: none;
+    color:  rgb(0, 168, 232);
+}
+a:hover{
+    text-decoration: underline;
+    color:  rgb(0, 168, 232);
+}
+
+.footer{
+    text-align: center;
+    background-color: rgb(0, 168, 232);
+    padding: 10px;
+    margin-top: 5px;
+}
+@media (min-width:880px) and (max-width:1000px){
+    .container{
+        width: 100%;
+    }
+}
+@media (min-width:650px) and (max-width:880px){
+    .container{
+        width: 100%;
+    }
+    .input{
+        width: 97%;
+    }
+}
+@media (min-width:280px) and (max-width:650px){
+    #container{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        width: 100%;
+    }
+    .form-wrap{
+        width: 100%;
+    }
+}
