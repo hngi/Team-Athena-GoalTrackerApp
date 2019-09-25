@@ -1,0 +1,106 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.container{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    background-color: green;
+    background: linear-gradient(to bottom, rgb(166, 248, 166), green);
+    width: 900px;
+    height: 500px;
+    margin-left: 20%;
+    margin-top: 8%;
+    border-radius: 1%;
+}
+.box-1{
+
+}
+.content-holder{
+    text-align: center;
+    margin-top: 40%;
+
+}.content-holder img{
+    width: 200px;
+    height: 150px;
+    border-radius: 50px;
+}
+.content-holder h1{
+color: white;
+font-size: 15px;
+padding: 50px;
+font-weight: lighter;
+}
+.button-1{
+    border: none;
+    font-size: 20px;
+    padding: 10px;
+    width: 150px;
+    border-radius: 10px;
+    color: brown;
+    background-color: white;
+}
+.button-2{
+    border: none;
+    font-size: 20px;
+    padding: 10px;
+    width: 150px;
+    border-radius: 10px;
+    color: brown;
+    background-color: white;
+    display: none;
+}
+.box-2{
+    background-color: brown;
+    margin: 5px;
+}
+.login-form-container{
+    text-align: center;
+    margin-top: 14%;
+}
+.login-form-container{
+    color: #000;
+    font-size: 21px;
+    padding: 20px;
+    font-weight: lighter;
+}
+.input-field{
+    font-size: 16px;
+    padding: 10px;
+    border: 1px black;
+    border-radius: 5px;
+    outline: none;
+    width: 300px;
+}
+.login-button{
+    font-size: 16px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    width: 300px;
+    background-color: green;
+    color: black;
+}
+.signup-form-container {
+position: absolute;
+top: 150px;
+left: 710px;
+display: none;
+}
+.signup-form-container h1{
+    color: #000;
+    font-size: 21px;
+    padding: 20px;
+    font-weight: lighter;
+}
+.Signup-button{
+    font-size: 16px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    width: 300px;
+    background-color: rgb(42, 165, 97);
+    color: black;
+}
