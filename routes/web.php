@@ -23,4 +23,6 @@ Route::group(['as' => '', 'middleware' => ['auth']], function () {
     Route::resource('/todo', 'TodoController');
 
     Route::resource('/goal', 'GoalController');
+
+    Route::get('statistics', 'GoalController@statistics');
 });

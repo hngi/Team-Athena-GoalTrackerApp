@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Goal;
+use App\Todo;
 use App\Http\Requests\GoalRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class GoalController extends Controller
 {
@@ -114,5 +116,15 @@ class GoalController extends Controller
             Log::warning($e->getMessage());
             return $this->error($e->getMessage(), 500);
         }
+    }
+
+    public function statistics(){
+        $stats = [
+            'totalGoals'=>Goal::where('user_id', Auth::user()->id)->count(),
+            'totalTodo'=>Todo::where('user_id', Auth::user()->id)->count(),
+            'pendingTodo'=>Todo::where(['user_id'=>Auth::user()->id, 'status'=>'Pending'])->count(),
+            'completedTodo'=>Todo::where(['user_id'=>Auth::user()->id,'status', 'Completed'])->count() 
+        ];
+        return $this->success('statistics retrieved', $stats);
     }
 }
