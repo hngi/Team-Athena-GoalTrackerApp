@@ -16,7 +16,7 @@ class GoalController extends Controller
     public function index()
     {
         logger('requesting for goals data');
-        return response()->json(['status' => 'success', 'message' => 'Goal data obtained successfully.', 'data' => Goal::getGoalsWithTodos()], 200);
+        return $this->success('Goal data obtained successfully.', Goal::getGoalsWithTodos());
     }
 
     /**
@@ -41,12 +41,12 @@ class GoalController extends Controller
             $goal = Goal::create($request->all());
             if ($goal) {
                 logger('Goal saved successfully ' . $goal, );
-                return response()->json(['status' => 'success', 'message' => 'Goal saved successfully.', 'data' => $goal->toArray()], 200);
+                return $this->success('Goal saved successfully.', $goal->toArray());
             }
             throw new Exception('Failed to save goal' . $request->all());
         } catch (Exception $e) {
             logger()->error($e->getMessage());
-            return response()->json(['status' => 'failed', 'message' => $e->getMessage()], 500);
+            return $this->error($e->getMessage(), 500);
         }
     }
 
@@ -61,10 +61,10 @@ class GoalController extends Controller
         try {
             $goal = Goal::findOrFail($id);
             logger('Showing ' . $goal->title);
-            return response()->json(['status' => 'success', 'message' => 'goal detail found.', 'data' => $goal->toArray()], 200);
+            return $this->success('goal detail found.', $goal->toArray());
         } catch (Exception $e) {
             logger()->error($e->getMessage());
-            return response()->json(['status' => 'failed', 'message' => $e->getMessage()], 500);
+            return $this->error($e->getMessage(), 500);
         }
     }
 
@@ -91,10 +91,10 @@ class GoalController extends Controller
         try {
             $goal = Goal::findOrFail($id)->update($request->all());
             logger($goal->tile . ' updated successfully ' . $goal);
-            return response()->json(['status' => 'success', 'message' => $goal->title . ' updated successfully', 'data' => $goal->toArray()], 200);
+            return $this->success($goal->title . ' updated successfully', $goal->toArray());
         } catch (Exception $e) {
             Log::warning($e->getMessage());
-            return response()->json(['status' => 'failed', 'message' => $e->getMessage()], 500);
+            return $this->error($e->getMessage(), 500);
         }
     }
 
@@ -109,10 +109,10 @@ class GoalController extends Controller
         try {
             $goal = Goal::findOrFail($id)->delete();
             logger($goal->title . ' deleted successfully ' . $goal);
-            return response()->json(['status' => 'success', 'message' => $goal->title . ' deleted successfully', 'data' => $goal->toArray()], 200);
+            return $this->success($goal->title . ' deleted successfully', $goal->toArray());
         } catch (Exception $e) {
             Log::warning($e->getMessage());
-            return response()->json(['status' => 'failed', 'message' => $e->getMessage()], 500);
+            return $this->error($e->getMessage(), 500);
         }
     }
 }

@@ -43,12 +43,12 @@ class TodoController extends Controller
             $todo = Todo::create($request->all());
             if ($todo) {
                 logger('Todo data saved successfully ' . $todo);
-                return response()->json(['status' => 'success', 'message' => 'Todo data saved successfully.', 'data' => $todo->toArray()], 200);
+                return $this->success('Todo data saved successfully.', $todo->toArray());
             }
             throw new Exception('Failed to save todo' . $request->all());
         } catch (Exception $e) {
             logger()->error($e->getMessage());
-            return response()->json(['status' => 'failed', 'message' => $e->getMessage()], 500);
+            return $this->error($e->getMessage(), 500);
         }
     }
 
@@ -63,10 +63,10 @@ class TodoController extends Controller
         try {
             $todo = Todo::findOrFail($id);
             logger('Showing ' . $todo->task);
-            return response()->json(['status' => 'success', 'message' => 'todo detail found.', 'data' => $todo->toArray()], 200);
+            return $this->success('todo detail found.', $todo->toArray());
         } catch (Exception $e) {
             logger()->error($e->getMessage());
-            return response()->json(['status' => 'failed', 'message' => $e->getMessage()], 500);
+            return $this->error($e->getMessage(), 500);
         }
     }
 
@@ -93,10 +93,10 @@ class TodoController extends Controller
         try {
             $todo = Todo::findOrFail($id)->update($request->all());
             logger($todo->task . ' updated successfully ' . $todo);
-            return response()->json(['status' => 'success', 'message' => $todo->task . ' updated successfully', 'data' => $todo->toArray()], 200);
+            return $this->success($todo->task . ' updated successfully', $todo->toArray());
         } catch (Exception $e) {
             Log::warning($e->getMessage());
-            return response()->json(['status' => 'failed', 'message' => $e->getMessage()], 500);
+            return $this->error($e->getMessage(), 500);
         }
     }
 
@@ -111,10 +111,10 @@ class TodoController extends Controller
         try {
             $todo = Todo::findOrFail($id)->delete();
             logger($todo->task . ' deleted successfully ' . $todo);
-            return response()->json(['status' => 'success', 'message' => $todo->task . ' deleted successfully', 'data' => $todo->toArray()], 200);
+            return $this->success($todo->task . ' deleted successfully', $todo->toArray());
         } catch (Exception $e) {
             Log::warning($e->getMessage());
-            return response()->json(['status' => 'failed', 'message' => $e->getMessage()], 500);
+            return $this->error($e->getMessage(), 500);
         }
     }
 }
