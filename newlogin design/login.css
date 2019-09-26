@@ -1,0 +1,233 @@
+body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    background-image: url(../images/undraw_to_do_xvvc.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+            /*-----------HEADER STYLE----------*/
+header{
+    position: relative;
+    margin-top: 40px;
+    margin-left: 60px;
+}
+.topbtn{
+    width: 300px;
+    padding: 10px;
+    position: absolute;
+    top: 6px;
+    right: 0px;
+}
+.topbtn a{
+    text-decoration: none;
+    color: rgb(22, 126, 82);
+    font-weight: bolder;
+    margin-left: 10px;
+    padding: 10px;
+}
+.topbtn a:hover{
+    color: #3F3D56;
+}
+.topbtn a.active{
+    background-color: #76E5BD;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px grey;
+}
+.topbtn a.active:hover{
+    background-color: rgb(22, 126, 82);
+}
+            /*------------FORM STYLE---------------*/
+.login-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100%;
+    padding-top: 100px;
+    margin-left: 60px;
+}
+.form-head{
+text-align: left;
+width: 60%;
+}
+.form-wrap{
+    width: 60%;
+    height: auto;
+}
+.form-wrap .input{
+    margin-top: 20px;
+    padding-left: 8px;
+    border-radius: 5px;
+    border: none;
+    height: 45px;
+    width: 80%;
+    font-size: 1rem;
+    box-shadow: 0 2px 2px gray;
+}
+.check{
+    margin-top: 7px; 
+    font-size: .8rem;
+    width: 85%;
+    color: grey;
+}
+.check a{
+    text-decoration: none;
+    color: #76E5BD;
+    text-align: right;
+    margin-left: 100px;
+}
+.check a:hover{
+    color: grey;
+    text-decoration: underline;
+}
+.checkbox[type=checkbox]{
+    background-color:  #76E5BD;
+}
+.login-btn{
+    margin-top: 50px;
+    height: 40px;
+    padding: 5px;
+    background-color: rgb(22, 126, 82);
+    color:white;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 2px gray;
+    font-weight: bold;
+    font-size: 1rem; 
+    width: 83%;
+}
+.login-btn:hover{
+    color: rgb(22, 126, 82);
+    border: 2px solid rgb(22, 126, 82);
+    background-color: white;
+}
+                /*-------------IMAGES STYLE-------*/
+.myImg{
+    padding-top: 60px;
+    padding-left: 80px
+}
+@media (min-width:1090px) and (max-width:1200px){
+   
+    header{
+        margin-left: 5px;
+    }
+    .login-container{
+        margin-left: 5px;
+        padding-top: 100px
+    }
+    .myImg{
+        padding-top: 0px;
+        padding-left: 0px;
+    }
+    .form-head{
+        text-align: left;
+        width: 70%;
+    }
+    .form-wrap{
+            width: 70%;
+    }
+    .check a{
+        margin-left: 80px;
+    }
+    .login-btn{
+        width: 83%;
+    }
+}
+@media (min-width:700px) and (max-width:1090px){
+    body{
+        background-size: contain;
+    }
+    header{
+        margin-left: 10px;
+    }
+    
+    .topbtn{
+        width: 200px;
+    }
+    .login-container{
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 1fr 1fr;
+        padding-top: 100px;
+    }
+    .first{
+        margin: 0 auto;
+    }
+    .second{
+        display: none;
+    }
+    .form-head{
+        text-align: left;
+        width: 80%;
+        }
+        .form-wrap{
+            width: 80%;
+            height: auto;
+        }
+        .form-wrap .input{
+            width: 80%;
+        }
+        .check{
+            width: 80%;
+            color: grey;
+        }
+        .check a{
+            margin-left: 20%;
+        }
+        .login-btn{
+            width: 83%;
+        }
+ 
+}
+@media (min-width:298px) and (max-width:700px){
+    body{
+        background-size: contain;
+    }
+    header{
+        margin-left: 10px;
+    }
+    .topbtn{
+        width: 200px;
+    }
+    topbtn a{
+        margin-left: 5px;
+        padding: 5px;
+    }
+    .login-container{
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 1fr 1fr;
+        padding-top: 100px;
+    }
+    .first{
+        margin: 0 auto;
+    }
+    .second{
+        display: none;
+    }
+    .form-head{
+        text-align: left;
+        width: 80%;
+        }
+        .form-wrap{
+            width: 85%;
+            height: auto;
+        }
+        .form-wrap .input{
+            width: 85%;
+        }
+        .check{
+            width: 85%;
+            color: grey;
+        }
+        .check a{
+            margin-left: 25%;
+        }
+        .login-btn{
+            width: 88%;
+        }
+
+}
