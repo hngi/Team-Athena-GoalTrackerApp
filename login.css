@@ -3,9 +3,9 @@
     padding: 0px;
 }
 .container{
-    display: grid;
+    display:  grid;
     grid-template-columns: 1fr 2fr;
-    background-color: green;
+    background-color: #71CEAC;
     background: linear-gradient(to bottom, rgb(166, 248, 166), green);
     width: 900px;
     height: 500px;
@@ -30,6 +30,7 @@ color: white;
 font-size: 15px;
 padding: 50px;
 font-weight: lighter;
+margin: -20px;
 }
 .button-1{
     border: none;
@@ -37,7 +38,7 @@ font-weight: lighter;
     padding: 10px;
     width: 150px;
     border-radius: 10px;
-    color: brown;
+    color: black;
     background-color: white;
 }
 .button-2{
@@ -46,12 +47,12 @@ font-weight: lighter;
     padding: 10px;
     width: 150px;
     border-radius: 10px;
-    color: brown;
+    color: black;
     background-color: white;
     display: none;
 }
 .box-2{
-    background-color: brown;
+    background-color: rgb(231, 229, 229);
     margin: 5px;
 }
 .login-form-container{
@@ -64,10 +65,19 @@ font-weight: lighter;
     padding: 20px;
     font-weight: lighter;
 }
+.login-form-container pad{
+    margin-right: 500px;
+    margin-top: 100%;
+    padding: 0px;
+    color:black;
+}
+.login-form-container label{
+margin-right: 240px;
+}
 .input-field{
     font-size: 16px;
     padding: 10px;
-    border: 1px black;
+    border: 100px black;
     border-radius: 5px;
     outline: none;
     width: 300px;
@@ -101,6 +111,10 @@ display: none;
     border-radius: 5px;
     outline: none;
     width: 300px;
-    background-color: rgb(42, 165, 97);
+    background-color:#71CEAC ;
     color: black;
+}
+.signup-form-container h1{
+padding: 10px;
+color: black;
 }
