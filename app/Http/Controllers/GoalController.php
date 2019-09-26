@@ -90,7 +90,7 @@ class GoalController extends Controller
     {
         try {
             $goal = Goal::findOrFail($id)->update($request->all());
-            logger($goal->tile . ' updated successfully ' . $goal);
+            logger($goal->title . ' updated successfully ' . $goal);
             return $this->success($goal->title . ' updated successfully', $goal->toArray());
         } catch (Exception $e) {
             Log::warning($e->getMessage());
