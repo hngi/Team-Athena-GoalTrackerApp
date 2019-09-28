@@ -25,7 +25,7 @@ class GoalRequest extends FormRequest
     {
         return [
             'user_id' => 'required|integer|exists:users,id',
-            'title' => 'required|string',
+            'goal' => 'required|string',
         ];
     }
 }

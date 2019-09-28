@@ -18,7 +18,8 @@ class CreateTodosTable extends Migration
             $table->integer('goal_id')->unsigned()->index('goal_id');
                 $table->foreign('goal_id')->references('id')->on('goals');
             $table->string('todo');
-            $table->enum('status', ['Pending', 'Completed', 'Achieved']);
+            $table->boolean('completed');
+            // $table->enum('status', ['Pending', 'Completed', 'Achieved']);
             $table->timestamps();
         });
     }

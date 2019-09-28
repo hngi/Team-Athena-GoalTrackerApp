@@ -25,8 +25,9 @@ class TodoRequest extends FormRequest
     {
         return [
             'goal_id' => 'required|integer|exists:goals,id',
-            'task' => 'required|string',
-            'status' => 'in:Pending,Completed,Archived',
+            'todo' => 'required|string',
+            'completed' => 'required|boolean',
+            // 'status' => 'in:Pending,Completed,Archived',
         ];
     }
 }

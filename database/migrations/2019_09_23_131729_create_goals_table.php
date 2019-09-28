@@ -17,7 +17,7 @@ class CreateGoalsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index('user_id');
                 $table->foreign('user_id')->references('id')->on('users');
-            $table->string('title');
+            $table->string('goal');
             $table->timestamps();
         });
     }
