@@ -107,6 +107,11 @@ width: 60%;
     padding-top: 60px;
     padding-left: 80px
 }
+.team{
+    color: black;
+    background-color: #76E5BD;
+    text-align: center;
+}
 @media (min-width:1090px) and (max-width:1200px){
    
     header{
@@ -188,11 +193,14 @@ width: 60%;
         margin-left: 10px;
     }
     .topbtn{
-        width: 200px;
+        width: 150px;
     }
-    topbtn a{
+    .topbtn a{
         margin-left: 5px;
         padding: 5px;
+    }
+    a .top{
+        padding: 0;
     }
     .login-container{
         display: grid;
@@ -226,6 +234,7 @@ width: 60%;
         }
         .login-btn{
             width: 88%;
+            padding: 0px;
         }
 
 }

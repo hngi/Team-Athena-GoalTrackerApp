@@ -40,7 +40,7 @@ header{
 .part{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 210px 150px 230px;
+    grid-template-rows: 210px 150px 230px ;
     position: relative;
 }
 /*------------TEXT AREA-----------*/
@@ -69,6 +69,7 @@ h1 span{
     height: 40px;
     width: 180px;
     text-transform: capitalize;
+    font-weight: bold;
     font-size: 1rem;
     color: white;
     background-color: #76E5BD;
@@ -85,9 +86,17 @@ h1 span{
     margin-top: 40px;
     margin-bottom: 5px;
 }
-.tag{
+.tag1{
     display: inline-block;
     margin: 0;
+    width: 123px;
+    height: 25px;
+}
+.tag2{
+    display: inline-block;
+    margin: 0;
+    width: 51px;
+    height: 41px;
 }
 /*-------------IMAGE AREA-----------*/
 #second{
@@ -97,12 +106,14 @@ h1 span{
 }
 .trophy{
     display: block;
+    width: 20%;
     position: absolute;
-    top: 67px;
-    left: 80px;
+    top: 87px;
+    left: 82px;
 }
 .builder{
     display: block;
+    width:100%;
     height: 500px;
 }
 
@@ -112,7 +123,7 @@ h1 span{
 }
 .mirror{
     height: 450px;
-    width: 630px;
+    width: 85%;
     z-index: -1;
     background-color: rgba(32, 241, 179, 0.623);
     position: absolute;
@@ -120,6 +131,7 @@ h1 span{
 }
 #image{
     position: absolute;
+    width: 100%;
     top: 30px;
     left: 0;
     z-index: 0;
@@ -188,6 +200,7 @@ h1 span{
 .testimonial{
     background-color: #76E5BD;
     padding-left: 70px;
+    padding-top: 10px;
 }
 .testimony{
     display: grid;
@@ -206,7 +219,7 @@ h1 span{
     display: flex;
     align-items: baseline;
     width: 100%;
-    margin-top: 80px;
+    margin-top: 70px;
 }
 .testmonial-img img{
     width: 80px;
@@ -223,7 +236,7 @@ h1 span{
     font-weight: bold;
 }
 
-/*----------PARTNERS IMAGE STYLING------------*/
+            /*----------PARTNERS AND FOOTER IMAGE STYLING------------*/
 #partners{
     height: 100px;
 }
@@ -270,5 +283,223 @@ footer{
     text-align: center;
 }
 
-/*----------MEDIA QUERIES-----------*/
+                /*------------------MEDIA QUERIES---------------------*/
 
+@media (min-width:1000px) and (max-width:1200px){
+    .part{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 290px 100px 230px;
+        position: relative;
+    }
+    #second{
+        width: 95%;
+        left: 26px;
+    }
+    .trophy{
+        width: 20%;
+        position: absolute;
+        top: 135px;
+        left: 62px;
+    }
+    .builder{
+        width:100%;
+    }
+    .mirror{
+        height: 320px;
+        width: 85%;
+    }
+    #reduce{
+        height: 400px;
+    }
+    #reduce{
+        height: 470px;
+    }
+    .topbtn{
+        width: 200px;
+    }
+    #CTA{
+        padding-left: 40px;
+        padding-top: 50px;
+    }
+    .CTAbtn{
+        margin-top: 45px;
+    }
+    .testmonial-img{
+        margin-top: 50px
+    }
+    .subscribe{
+        height: 30px;
+    }
+    .subscribe-btn{
+        height: 35px;
+        margin-top: 5px;
+    }
+    
+}
+@media (min-width:700px) and (max-width:1000px){
+    .part{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 290px 100px 230px;
+        position: relative;
+    }
+    header{
+        padding-left:40px;
+    }
+    .image img{
+        width: 90%;
+        left: 90px;
+    }  
+    .first{
+        padding-left:40px;
+    }
+    .testimonial{
+        padding-left:40px;
+    }
+    footer{
+        padding-left:40px;
+    }
+    #second{
+        width: 90%;
+        left: 24px;
+    }
+    .trophy{
+        width: 20%;
+        position: absolute;
+        top: 135px;
+        left: 62px;
+    }
+    .builder{
+        width:100%;
+    }
+    .mirror{
+        height: 320px;
+        width: 85%;
+    }
+    #reduce{
+        height: 400px;
+    }
+    #reduce{
+        height: 470px;
+    }
+    .topbtn{
+        width: 200px;
+    }
+    #CTA{
+        padding-left: 40px;
+        padding-top: 50px;
+    }
+    .CTAbtn{
+        margin-top: 45px;
+    }
+    .testmonial-img{
+        margin-top: 50px
+    }
+    .testmonial-img img{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+    .subscribe{
+        height: 30px;
+    }
+    .subscribe-btn{
+        height: 35px;
+        margin-top: 5px;
+    }
+    .footer-section{
+        padding-bottom: 5px;
+    }
+    
+}
+@media (min-width:280px) and (max-width:700px){
+    .part{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 600px  600px;
+        position: relative;
+    }
+    .trophy{
+        width: 15%;
+        position: absolute;
+        top: 150px;
+        left: 82px;
+    }
+    #second{
+        width: 90%;
+        left: 24px;
+    }
+    .topbtn{
+        width: 30%;
+        font-size: 1rem;
+        
+    }
+    a .top{
+        padding: 0;
+    }
+    .testimony{
+        display: flex;
+        flex-direction: column;
+    }
+    footer{
+        display: flex;
+        flex-direction: column;
+        padding-left: 70px;
+    }
+    .footer-section{
+        padding-bottom: 15px;
+    }
+    #CTA{
+        padding-left: 70px;
+    }
+    .subscribe{
+        height: 40px;
+    }
+    .subscribe-btn{
+        height: 35px;
+        margin-top: 10px;
+    }
+    .mirror{
+        height: 70%;
+        width: 83%;
+    }
+    
+}
+
+@media (min-width:280px) and (max-width:446px){
+    .mirror{
+        height: 50%;
+        width: 75%;
+    }
+    .trophy{
+        width: 15%;
+        position: absolute;
+        top: 180px;
+        left: 44px;
+    }
+    #image{
+        width: 90%;
+    }
+    .image img{
+        display: block;
+        width: 90%;
+        height: 380px;
+        position: absolute;
+        top: 40px;
+        left: 80px; 
+        z-index: 0;
+    }  
+    #mirror{
+        height: 400px;
+        width: 80%;
+        z-index: -1;
+        background-color: rgba(32, 241, 179, 0.623);
+        position: absolute;
+        top: 50px;
+        right: 70px;
+    }
+    h1 span{
+        font-size: 4.3rem;
+    }
+}

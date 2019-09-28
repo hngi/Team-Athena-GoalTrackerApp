@@ -43,7 +43,7 @@ header{
 .form-container{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 400px;
+    grid-template-rows: 550px;
     padding-left: 70px;
     position: relative;
 }
@@ -101,4 +101,156 @@ label a:hover{
 }
 .signup-btn:hover{
     background-color: rgb(22, 126, 82);
+}
+.team{
+    color: black;
+    background-color: #76E5BD;
+    text-align: center;
+}
+
+@media (min-width:900px) and (max-width:1100px){
+    .form-wrap{
+        z-index: 0;
+    }
+    .signup-img{
+        z-index: -1;
+    }
+}
+@media (min-width:787px) and (max-width:900px){
+    /*body{
+        background-image: url(../images/undraw_selection_92i4\(1\).png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center; 
+    }*/
+    /*.form-container{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 800px 800px;
+        position: relative;
+    }*/
+    .form-container{
+        height: 800px;
+        width: 78%;
+        background-image: url(https://res.cloudinary.com/dkyb7lx0u/image/upload/v1569643178/undraw_selection_92i4_1_lpzw5s.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center; 
+    }
+    .topbtn a{
+        margin-left: 5px;
+        padding: 5px;
+    }
+    .topbtn{
+        width: 200px;
+    }
+    .gap{
+        margin-left: 0;
+    }
+    .signup-img{
+        display: none;
+    }
+    .overlap{
+        width: 100%;
+        margin: 0px auto;
+    }
+    .form-wrap{
+        width: 80%;
+        z-index: 0;
+        margin: 20px auto;
+    }
+    .form-wrap .input{
+        width: 50%;
+    }
+    
+}
+@media (min-width:486px) and (max-width:787px){
+    .topbtn{
+        width: 150px;
+    }
+    .topbtn a{
+        margin-left: 5px;
+        padding: 5px;
+    }
+    a .top{
+        padding: 0;
+    }
+    .form-container{
+        height: 750px;
+        width: 65%;
+        background-image: url(https://res.cloudinary.com/dkyb7lx0u/image/upload/v1569643178/undraw_selection_92i4_1_lpzw5s.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center; 
+    }
+    .gap{
+        margin-left: 0;
+    }
+    .overlap{
+        width: 80%;
+        margin: 0px auto;
+    }
+    .form-wrap{
+        width: 80%;
+        z-index: 0;
+        margin: 20px auto;
+    }
+    .form-wrap .input{
+        width: 80%;
+    }
+    .signup-img{
+        display: none;
+    }
+    .signup-btn{
+        width: 80%;
+    }
+}
+@media (min-width:300px) and (max-width:486px){
+
+    header{
+        margin: 10px auto;
+    }
+    .topbtn{
+        width: 150px;
+    }
+    .topbtn a{
+        margin-left: 5px;
+        padding: 5px;
+    }
+    a .top{
+        padding: 0;
+    }
+    .heading{
+       margin: 70px auto 0px;
+    }
+    .form-container{
+        height: 750px;
+        width: 65%;
+        margin: 0 auto;
+    }
+    .gap{
+        margin-left: 0;
+    }
+
+    .gap{
+        margin-left: 0;
+    }
+    .overlap{
+        width: 80%;
+        margin: 0px auto;
+    }
+    .form-wrap{
+        width: 75%;
+        z-index: 0;
+        margin: 20px auto;
+    }
+    .form-wrap .input{
+        width: 95%;
+    }
+    .signup-btn{
+        width: 95%;
+    }
+    .signup-img{
+        display: none;
+    }
 }
