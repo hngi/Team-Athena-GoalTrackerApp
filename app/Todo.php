@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Todo extends Model
 {
-    protected $fillable = ['goal_id', 'task', 'status', 'description'];
+    protected $fillable = ['goal_id', 'todo', 'completed', 'description'];
 
     public function getTaskAttribute($value)
     {

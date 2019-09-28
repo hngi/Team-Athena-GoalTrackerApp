@@ -4,10 +4,42 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TodoRequest;
 use App\Todo;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class TodoController extends Controller
 {
+    public function add(Request $request){
+        try{
+            $todo = Todo::create(['goal_id'=>$request->goal_id, 'todo'=>$request->todo, 'completed'=>false]);
+            if($todo) return $this->success();
+        }catch (Exception $e) {
+            return $this->error($e->getMessage(), 500);
+        }
+    }
+    public function remove(Request $request){
+        try{
+            $todo = Todo::find($request->todo_id);
+            if($todo){
+                $todo->delete();
+            }
+            return $this->success();
+        }catch (Exception $e) {
+            return $this->error($e->getMessage(), 500);
+        }
+    }
+    public function complete(Request $request){
+        try{
+            $todo = Todo::find($request->todo_id);
+            if($todo)  {
+                $todo->completed = $request->is_done;
+                $todo->save();
+            }
+            return $this->success();
+        }catch (Exception $e) {
+            return $this->error($e->getMessage(), 500);
+        }
+    }
     /**
      * Display a listing of the resource.
      *
