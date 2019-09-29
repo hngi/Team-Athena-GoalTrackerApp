@@ -19,11 +19,7 @@ Route::post('/activate', 'AuthController@activate');
 Route::post('/login', 'AuthController@login');
 Route::post('/reset', 'AuthController@reset');
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-// Route::group(['as' => '', 'middleware' => ['auth']], function () {
+Route::group(['as' => '', 'middleware' => ['auth:api']], function () {
     Route::get('/goals', 'GoalController@goals');
     Route::post('/goal/add', 'GoalController@add');
     Route::post('/goal/remove', 'GoalController@remove');
@@ -33,6 +29,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     Route::post('/todo/remove', 'TodoController@remove');
 
     Route::get('/statistics', 'GoalController@statistics');
-// });
-
-// Route::post('goal/create', 'GoalController@test');
+});

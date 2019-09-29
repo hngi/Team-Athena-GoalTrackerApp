@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
 	<!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
 	<script src="js/vue.js"></script>
-    <!-- <script src="js/axios.min.js"></script> -->
+    <script src="js/axios.min.js"></script>
 </head>
 
 <body>
@@ -41,12 +41,12 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <input type="password" v-model="form.password" required class="form-control" placeholder="Password">
+                                        <input type="password" v-model="form.password" required class="form-control" minlength="6" placeholder="Password">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <input type="password" v-model="form.confirmed_password" required class="form-control" placeholder="Confirm Password">
+                                        <input type="password" v-model="form.password_confirmation" required class="form-control" minlength="6" placeholder="Confirm Password">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -70,50 +70,69 @@
         const app = new Vue({
             el: '#app',
             data: { 
-                backend: 'http://127.0.0.1:8003/api',  
-                dashboard: 'http://127.0.0.1:8080',
+                backend: 'http://127.0.0.1:8003/',  
+                dashboard: './index.html',
                 loading: false,
                 success: null,
                 errors: null,
                 authenticated: false,
 
-                form: { name: '', username: '', email:'', password: '', confirmed_password: '' }
+                form: { name: '', username: '', email:'', password: '', password_confirmation: '' }
             },
 
             methods: {
                 register(){
-                    this.loading = true;                  
-                    document.getElementById('verify-phone-btn').disabled =true;
-                    document.getElementById('verify-phone-btn').style = 'opacity: 0.5';
-                    // document.getElementById('register-btn').disabled =true;
-                    // document.getElementById('register-btn').style = 'opacity: 0.5';
-                    // ===================================
-                    this.$store.dispatch('postData', {address: 'register', data: this.register })
+                    //VALIDATE FORM
+                    
+                    //Feedback to user
+                    this.loading = true;
+                    // document.getElementById('register-btn').disable = true;
+                    // document.getElementById('register-btn').style = 'background: #EE4B4B';
+                    
+                    //SUBMIT FORM
+                    axios.post(this.backend+'api/register', this.form)
                     .then(response=>{
-                        this.$store.dispatch('doLogin', {username: this.register.phone, password:this.register.password})
-                        .then(response=>{                    
-                            this.loading = false;                    
-                            document.getElementById('verify-phone-btn').disabled =false;
-                            document.getElementById('verify-phone-btn').style = 'opacity: 1';
-                        })
-                        .catch(error=>{                    
-                            this.loading = false;                    
-                            document.getElementById('verify-phone-btn').disabled =false;
-                            document.getElementById('verify-phone-btn').style = 'opacity: 1';
-                        })
+                        this.loading = false;
+                        this.success = 'Registeration Successful'
+                        localStorage.setItem('hng_token', response.data.data.accessToken)
+                        localStorage.setItem('hng_expiration', Date.now(response.data.data.expires_at))
+                        this.authenticated = true;
+                        // this.$router.push('/login')
+                        // document.getElementById('register-btn').disable = false;
+                        this.isAuth();
                     })
-                    .catch(error => {                
-                        this.loading = false;                    
-                        document.getElementById('verify-phone-btn').disabled =false;
-                        document.getElementById('verify-phone-btn').style = 'opacity: 1';
-                        window.scrollTo(0,0);
-                        this.error.push(error.message);
+                    .catch(error=>{
+                        this.loading = false;
+                        // document.getElementById('register-btn').disable = false;
+                        this.errors = error.errors;
                     })
-                }
+                },
+                
+
+                isAuth(){
+                    let token = localStorage.getItem('hng_token');
+                    let expiration = localStorage.getItem('hng_expiration');
+
+                    if(! token || ! expiration) // check if token exists now or return null
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        if(Date.now() > parseInt(expiration)) // check if existing token has expired and return null if true or return true if otherwise
+                        {
+                            return null;
+                        }
+                        else
+                        {
+                            window.location.href = this.dashboard;
+                        }
+                    }
+                },
             },
 
             created(){
-                
+                this.isAuth();
             },
 
             mounted () {

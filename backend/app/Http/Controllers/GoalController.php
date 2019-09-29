@@ -17,7 +17,7 @@ class GoalController extends Controller
 
     public function add(Request $request){
         try{
-            $goal = Goal::create(['user_id'=>1, 'goal'=>$request->goal]);
+            $goal = Goal::create(['user_id'=>Auth::user()->id, 'goal'=>$request->goal]);
             if($goal) return $this->success();
         }catch (Exception $e) {
             return $this->error($e->getMessage(), 500);
@@ -27,7 +27,12 @@ class GoalController extends Controller
         try{
             $goal = Goal::find($request->goalId);
             if($goal){
-                $goal->delete();
+                if($goal->user_id === Auth::user()->id){
+                    $goal->delete();
+                }
+                else{
+                    return $this->error('This goal does not belong to you');
+                }
             }
             return $this->success();
         }catch (Exception $e) {
@@ -144,15 +149,15 @@ class GoalController extends Controller
 
     public function statistics(){
         $stats = [
-            'totalGoals'=>Goal::where('user_id', 1)->count(),
-            'totalTodos'=>Goal::join('todos', 'todos.goal_id', 'goals.id')->where('goals.user_id', 1)->count(),
-            'pendingTodos'=>Goal::join('todos', 'todos.goal_id', 'goals.id')->where(['goals.user_id'=>1, 'todos.completed'=>0])->count(),
-            'completedTodos'=>Goal::join('todos', 'todos.goal_id', 'goals.id')->where(['goals.user_id'=>1,'todos.completed'=>1])->count()
+            // 'totalGoals'=>Goal::where('user_id', 1)->count(),
+            // 'totalTodos'=>Goal::join('todos', 'todos.goal_id', 'goals.id')->where('goals.user_id', 1)->count(),
+            // 'pendingTodos'=>Goal::join('todos', 'todos.goal_id', 'goals.id')->where(['goals.user_id'=>1, 'todos.completed'=>0])->count(),
+            // 'completedTodos'=>Goal::join('todos', 'todos.goal_id', 'goals.id')->where(['goals.user_id'=>1,'todos.completed'=>1])->count()
 
-            // 'totalGoals'=>Goal::where('user_id', Auth::user()->id)->count(),
-            // 'totalTodo'=>Goal::join('todos', 'todos.goal_id', 'goals.id')->where('goals.user_id', Auth::user()->id)->count(),
-            // 'pendingTodo'=>Todo::where(['user_id'=>Auth::user()->id, 'completed'=>0])->count(),
-            // 'completedTodo'=>Todo::where(['user_id'=>Auth::user()->id,'completed'=>1])->count() 
+            'totalGoals'=>Goal::where('user_id', Auth::user()->id)->count(),
+            'totalTodos'=>Goal::join('todos', 'todos.goal_id', 'goals.id')->where('goals.user_id', Auth::user()->id)->count(),
+            'pendingTodos'=>Todo::join('goals', 'todos.goal_id', 'goals.id')->where(['goals.user_id'=>Auth::user()->id, 'todos.completed'=>0])->count(),
+            'completedTodos'=>Todo::join('goals', 'todos.goal_id', 'goals.id')->where(['goals.user_id'=>Auth::user()->id,'todos.completed'=>1])->count() 
 
             // 'pendingTodo'=>Todo::where(['user_id'=>Auth::user()->id, 'status'=>'Pending'])->count(),
             // 'completedTodo'=>Todo::where(['user_id'=>Auth::user()->id,'status'=>'Completed'])->count() 

@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 use App\User;
-use App\Http\Controllers\MailController;
+// use App\Http\Controllers\MailController;
 
 class AuthController extends Controller
 {
-    public function register(Request $request, MailController $EMAIL){
+    public function register(Request $request){
         // Validate Input
         $validation = $request->validate([
                         'username' => 'required|string|unique:users',

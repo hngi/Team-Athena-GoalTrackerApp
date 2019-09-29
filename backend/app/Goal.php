@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Auth;
 
 class Goal extends Model
 {
@@ -25,7 +26,7 @@ class Goal extends Model
 
     public static function getGoalsWithTodos()
     {
-        return self::with('todo', 'user')
+        return self::where('user_id', Auth::user()->id)->with('todo', 'user')
             ->orderBy('created_at', 'desc')
             ->get()
             ->toArray();
