@@ -71,7 +71,7 @@ class GoalController extends Controller
         try {
             $goal = Goal::create($request->all());
             if ($goal) {
-                logger('Goal saved successfully ' . $goal, );
+                logger('Goal saved successfully ' . $goal);
                 return $this->success('Goal saved successfully.', $goal->toArray());
             }
             throw new Exception('Failed to save goal' . $request->all());

@@ -241,7 +241,7 @@
         const app = new Vue({
             el: '#app',
             data: { 
-                backend: 'http://127.0.0.1:8003/api',  
+                backend: 'http://athena-goal-tracker.elitelovers.org/backend/public/api',  
                 dashboard: 'http://127.0.0.1:8080/todo',
                 loading: false,
                 success: null,
@@ -377,8 +377,8 @@
                         (goal)=>{
                             if(goal.todo.length !== undefined){
                                 let totalTodo = goal.todo.length;
-                                let pending =   goal.todo.filter((todo)=> !todo.completed ).length;
-                                let completed = goal.todo.filter((todo)=> todo.completed).length;
+                                let pending =   goal.todo.filter((todo)=> todo.completed == 0 ).length;
+                                let completed = goal.todo.filter((todo)=> todo.completed == 1).length;
                                 goal.pendingTodo = pending;
                                 goal.totalTodo = totalTodo;
                                 goal.completeTodo = completed;

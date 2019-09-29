@@ -8,6 +8,8 @@ class Todo extends Model
 {
     protected $fillable = ['goal_id', 'todo', 'completed', 'description'];
 
+    protected $casts = ['completed'=>'boolean'];
+    
     public function getTaskAttribute($value)
     {
         return ucfirst($value);

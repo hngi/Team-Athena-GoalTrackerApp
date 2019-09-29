@@ -12,6 +12,11 @@
     <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
 	<script src="js/vue.js"></script>
     <script src="js/axios.min.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -21,7 +26,10 @@
             <div class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
                 <div class="row w-100 mx-auto">
                     <div class="col-lg-4 mx-auto">
-                        <div class="auto-form-wrapper">
+                        <div class="auto-form-wrapper" v-clock>
+                            <div v-if="errors !== null && errors !== undefined" class="alert alert-fill-danger" role="alert"> {{errors}} </div>
+                            <div v-if="success !== null && success !== undefined" class="alert alert-fill-success" role="alert" v-if="error !== ''"> {{success}} </div>
+
                             <form @submit.prevent="login">
                                 <div class="form-group">
                                     <label class="label">Username/Email</label>
@@ -45,13 +53,13 @@
                                     <button type="submit" class="btn btn-primary submit-btn btn-block">Login</button>
                                 </div>
                                 <div class="form-group d-flex justify-content-between">
-                                    <div class="form-check form-check-flat mt-0">
+                                    <!--div class="form-check form-check-flat mt-0">
                                         <label class="form-check-label">
                                             <input type="checkbox" class="form-check-input" checked=""> Keep me signed in
                                             <i class="input-helper"></i>
                                         </label>
                                     </div>
-                                    <a href="#" class="text-small forgot-password">Forgot Password</a>
+                                    <a href="#" class="text-small forgot-password">Forgot Password</a-->
                                 </div>
         
                                 <div class="text-block text-center my-3">
@@ -80,6 +88,7 @@
             el: '#app',
             data: { 
                 backend: 'http://127.0.0.1:8003/',  
+                // backend: 'http://athena-goal-tracker.elitelovers.org/backend/public/',  
                 dashboard: './index.html',
                 loading: false,
                 success: null,
@@ -109,14 +118,17 @@
                         localStorage.setItem('hng_expiration', response.data.expires_in + Date.now())
                         this.authenticated = true;
                         this.success = 'Login Successful'
+                        this.errors = null;
                         // this.$router.push('/login')
                         // document.getElementById('login-btn').disable = false;
                         this.isAuth();
                     })
                     .catch(error=>{
                         this.loading = false;
+                        this.success = null;
                         // document.getElementById('login-btn').disable = false;
-                        this.errors = error.errors;
+                        this.errors = error.response.data.message == undefined ? 'Something went wrong please retry' : error.response.data.message;
+                        
                     })
                 },
                 
