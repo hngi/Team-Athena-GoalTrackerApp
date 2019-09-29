@@ -7,7 +7,11 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use HasApiTokens, Notifiable;
+    
+    public function findForPassport($identifier){
+        return $this->orWhere('username', $identifier)->orWhere('email', $identifier)->first();
+    }
 
     /**
      * The attributes that are mass assignable.
