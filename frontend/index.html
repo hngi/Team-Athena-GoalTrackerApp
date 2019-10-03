@@ -241,8 +241,10 @@
         const app = new Vue({
             el: '#app',
             data: { 
-                backend: 'http://athena-goal-tracker.elitelovers.org/backend/public/api',  
-                dashboard: 'http://127.0.0.1:8080/todo',
+                backend: 'http://127.0.0.1:8003/api',  
+                dashboard: './index.html',
+                // backend: 'http://athena-goal-tracker.elitelovers.org/backend/public/api',  
+                // dashboard: 'http://127.0.0.1:8080/todo',
                 loading: false,
                 success: null,
                 errors: null,

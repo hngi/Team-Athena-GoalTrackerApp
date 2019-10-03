@@ -13,9 +13,8 @@
 	<script src="js/vue.js"></script>
     <script src="js/axios.min.js"></script>
     <style>
-        [v-cloak]{
-            display: none;
-        }
+        [v-cloak] > * { display:none; }
+        [v-cloak]::before { content: "loading..."; }
     </style>
 </head>
 
@@ -26,13 +25,17 @@
             <div class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
                 <div class="row w-100 mx-auto">
                     <div class="col-lg-4 mx-auto">
-                        <div class="auto-form-wrapper" v-clock>
+                        <h2 class="text-center mb-4">Athena Goal Tracker</h2>
+
+                        <div class="auto-form-wrapper" v-cloak>
+                            <h3 class="text-center mb-4">Login</h3>
+                            
                             <div v-if="errors !== null && errors !== undefined" class="alert alert-fill-danger" role="alert"> {{errors}} </div>
                             <div v-if="success !== null && success !== undefined" class="alert alert-fill-success" role="alert" v-if="error !== ''"> {{success}} </div>
 
                             <form @submit.prevent="login">
                                 <div class="form-group">
-                                    <label class="label">Username/Email</label>
+                                    <label class="label">Username / Email</label>
                                     <div class="input-group">
                                         <input type="text" required v-model="form.username" class="form-control" placeholder="Username/Email">
                                         <!-- <div class="input-group-append">
@@ -50,7 +53,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary submit-btn btn-block">Login</button>
+                                    <button type="submit" id="login-btn" class="btn btn-primary submit-btn btn-block">{{loading ? 'Please wait..' : 'Login'}}</button>
                                 </div>
                                 <div class="form-group d-flex justify-content-between">
                                     <!--div class="form-check form-check-flat mt-0">
@@ -107,8 +110,7 @@
             methods: {
                 login(){
                     this.loading = true;
-                    // document.getElementById('login-btn').disable = true;
-                    // document.getElementById('login-btn').style = 'background: #EE4B4B';
+                    document.getElementById('login-btn').disabled = true;
                     
                     //SUBMIT FORM
                     axios.post(this.backend+'oauth/token', this.form)
@@ -120,13 +122,13 @@
                         this.success = 'Login Successful'
                         this.errors = null;
                         // this.$router.push('/login')
-                        // document.getElementById('login-btn').disable = false;
+                        document.getElementById('login-btn').disabled = false;
                         this.isAuth();
                     })
                     .catch(error=>{
                         this.loading = false;
                         this.success = null;
-                        // document.getElementById('login-btn').disable = false;
+                        document.getElementById('login-btn').disabled = false;
                         this.errors = error.response.data.message == undefined ? 'Something went wrong please retry' : error.response.data.message;
                         
                     })
@@ -171,7 +173,6 @@
                     })
                     localStorage.removeItem('hng_token');
                     localStorage.removeItem('hng_expiration');
-                    // this.$router.push('/login')
                 },                                              
                 
             },
@@ -184,6 +185,8 @@
                 
             }
         })
+        
+        // window.onload(console.log(app.$options.methods.isAuth()));
     </script>
   </body>
   <html>
