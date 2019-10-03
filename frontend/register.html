@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Athena Goal Tracker</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+	<!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+    <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+	<script src="js/vue.js"></script>
+    <script src="js/axios.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container-scroller" id="app">
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+            <div class="content-wrapper d-flex align-items-center auth register-bg-1 theme-one">
+                <div class="row w-100 mx-auto">
+                    <div class="col-lg-4 mx-auto">
+                        <h2 class="text-center mb-4">Register</h2>
+                        <div class="auto-form-wrapper">
+                            <form @submit.prevent="register">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="text" v-model="form.name" required class="form-control" placeholder="Name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="text" v-model="form.username" required class="form-control" placeholder="Username">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="email" v-model="form.email" required class="form-control" placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="password" v-model="form.password" required class="form-control" minlength="6" placeholder="Password">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="password" v-model="form.password_confirmation" required class="form-control" minlength="6" placeholder="Confirm Password">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary submit-btn btn-block">Register</button>
+                                </div>
+                                <div class="text-block text-center my-3">
+                                    <span class="text-small font-weight-semibold">Already have and account ?</span>
+                                    <a href="login.html" class="text-black text-small">Login</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- content-wrapper ends -->
+        </div>
+    </div>
+
+
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: { 
+                backend: 'http://athena-goal-tracker.elitelovers.org/backend/public/',  
+                dashboard: './index.html',
+                loading: false,
+                success: null,
+                errors: null,
+                authenticated: false,
+
+                form: { name: '', username: '', email:'', password: '', password_confirmation: '' }
+            },
+
+            methods: {
+                register(){
+                    //VALIDATE FORM
+                    
+                    //Feedback to user
+                    this.loading = true;
+                    // document.getElementById('register-btn').disable = true;
+                    // document.getElementById('register-btn').style = 'background: #EE4B4B';
+                    
+                    //SUBMIT FORM
+                    axios.post(this.backend+'api/register', this.form)
+                    .then(response=>{
+                        this.loading = false;
+                        this.success = 'Registeration Successful'
+                        localStorage.setItem('hng_token', response.data.data.accessToken)
+                        localStorage.setItem('hng_expiration', Date.now(response.data.data.expires_at))
+                        this.authenticated = true;
+                        // this.$router.push('/login')
+                        // document.getElementById('register-btn').disable = false;
+                        this.isAuth();
+                    })
+                    .catch(error=>{
+                        this.loading = false;
+                        // document.getElementById('register-btn').disable = false;
+                        this.errors = error.errors;
+                    })
+                },
+                
+
+                isAuth(){
+                    let token = localStorage.getItem('hng_token');
+                    let expiration = localStorage.getItem('hng_expiration');
+
+                    if(! token || ! expiration) // check if token exists now or return null
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        if(Date.now() > parseInt(expiration)) // check if existing token has expired and return null if true or return true if otherwise
+                        {
+                            return null;
+                        }
+                        else
+                        {
+                            window.location.href = this.dashboard;
+                        }
+                    }
+                },
+            },
+
+            created(){
+                this.isAuth();
+            },
+
+            mounted () {
+                
+            }
+        })
+    </script>
+  </body>
+  <html>
