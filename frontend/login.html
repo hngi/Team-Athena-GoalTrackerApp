@@ -14,7 +14,41 @@
     <script src="js/axios.min.js"></script>
     <style>
         [v-cloak] > * { display:none; }
-        [v-cloak]::before { content: "loading..."; }
+        [v-cloak]::before { content: "loading...";
+         }
+
+         hr {
+             margin-top: 20px;
+             width: 80%;
+         }
+
+         .or {
+             background: #fff;
+             width: 30px;
+             margin: -27px auto 10px;
+         }
+
+         button {
+             padding: 7px;
+             width: 100%;
+             box-sizing: border-box;
+             border: none;
+             font-size: 1em;
+             border-radius: 10px;
+             font-weight: bold;
+             background: blue;
+             margin-bottom: 20px;
+         }
+
+         button a {
+             text-decoration: none;
+             color: #fff;
+         }
+
+         button:hover {
+             background: rgba(0,0,0,0.6);
+         }
+
     </style>
 </head>
 
@@ -29,7 +63,7 @@
 
                         <div class="auto-form-wrapper" v-cloak>
                             <h3 class="text-center mb-4">Login</h3>
-                            
+
                             <div v-if="errors !== null && errors !== undefined" class="alert alert-fill-danger" role="alert"> {{errors}} </div>
                             <div v-if="success !== null && success !== undefined" class="alert alert-fill-success" role="alert" v-if="error !== ''"> {{success}} </div>
 
@@ -64,7 +98,10 @@
                                     </div>
                                     <a href="#" class="text-small forgot-password">Forgot Password</a-->
                                 </div>
-        
+                                <hr>
+                                <p class="or">OR</p>
+                                <button><a href="#"><i class="fa fa-google">Login with Google</i></a></button>
+                                
                                 <div class="text-block text-center my-3">
                                     <span class="text-small font-weight-semibold">Not a member ?</span>
                                     <a href="register.html" class="text-small">Create new account</a>
@@ -188,5 +225,6 @@
         
         // window.onload(console.log(app.$options.methods.isAuth()));
     </script>
+    
   </body>
   <html>
