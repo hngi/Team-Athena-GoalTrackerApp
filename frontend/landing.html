@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Landing Page</title>
+     <style>
+ body{
+    margin: 0;
+    padding: 0;
+    font-family: open sans
+}
+.container{
+    width: 95%;
+    max-width: 1300px;
+    margin: 0 auto;
+
+}
+header{
+    margin-top: 1rem;
+    padding: 0
+}
+.container-header{
+    display: flex;
+    justify-content: space-between
+}
+.buttons{
+    margin-left: 1rem;
+    margin-top: 1rem
+}
+button{
+    padding: 0.5rem;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    font-style: normal;
+    font-weight: bold;
+    background: rgba(113, 206, 172, 0.98);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    color: #ffff
+
+}
+button:hover{
+    cursor: pointer;
+    color: rgba(113, 206, 172, 0.98);
+    background: #ffff
+}
+.section-two button:hover{
+    cursor: pointer;
+    background: rgba(113, 206, 172, 0.98);
+    color: #ffff
+}
+
+.login{
+    margin-right: 1rem
+}
+img{
+    max-width: 100%;
+    display: block;
+}
+section{
+    padding-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    max-width: 980px;
+
+}
+.section-one{
+    padding-top: 3rem;
+}
+h3{
+    font-size: 2.5rem;
+    color: #555555;
+    letter-spacing: 2px;
+    word-spacing: 5px;
+}
+h4{
+    font-style: normal;
+    font-weight: bold;
+}
+span{
+    color:   rgba(113, 206, 172, 0.98);
+}
+p{
+    margin-bottom: 2rem;
+    color: #888686;
+}
+.image{
+    background:  rgba(113, 206, 172, 0.98); 
+    margin-bottom: 1rem
+}
+
+.section-two{
+    margin-top: 1rem;
+}
+.get-started{
+    background: #ffff;
+    color:  rgba(113, 206, 172, 0.98);
+    margin-left: 3rem;
+    margin-top: 2rem
+
+}
+ol li {
+    color: #555555;
+    letter-spacing: 1px;
+    list-style: none;
+
+}
+.section-four{
+    background: rgba(113, 206, 172, 0.98)
+}
+footer img {
+    padding: 2em;
+   
+}
+
+
+@media (min-width:675px){
+    .write-up{
+        margin-top: 4rem;
+        text-align: center;
+    }
+    .ce{
+        margin-left: 3em;
+    }
+}
+@media (min-width:675px){
+    section{
+        flex-direction: row;
+        margin-left: 4rem;
+        margin: 0 auto;
+        justify-content: space-between;
+        max-width: 1700px;
+    }
+    main{
+        margin-left: 3rem
+    }
+    aside{
+        padding-top: 4rem
+    }
+}
+
+     </style>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+    <header>
+         <div class="container container-header">
+           <img src="img/logo.png" alt="">
+
+             <div class="buttons">
+                <div class="form-group">
+                    <a href="login.html"><button type="submit" id="login-btn" class="btn btn-primary submit-btn btn-block">login</button></a>
+                    
+                </div>
+               <!-- <button class="Sign-Up">Sign Up</button> -->
+            </div>
+         </div>
+    </header> 
+
+
+     <section class="section-one">
+         <main>
+            <h3>Achieve Your Goals <br> With <span>Athena</span></h3>
+            <p>Keep track of all your targets and goals for each day and achieve each one of them</p>
+            <div class="form-group">
+                    <a href="register.html"><button type="submit" id="login-btn" class="btn btn-primary submit-btn btn-block">Create an account</button></a>
+                    
+                </div>
+         </main>
+         <aside>
+              <img src="img/goals.png" alt="">
+
+         </aside>
+
+     </section>
+
+     <section class="section-two">
+
+         <div class="image hand-image">
+             <img src="img/hand.png" alt="">
+         </div>
+
+         <div class="write-up">
+             <h4>You can now keep track of your goals in three simple steps</h4>
+             <ol>
+                 <li>Create your account by clicking here</li>
+                 <li>Set up your goal list</li>
+                 <li>Keep track of your goal</li>
+             </ol>
+
+             <div class="form-group">
+                    <a href="register.html"><button type="submit" id="login-btn" class="get-started">Get Started</button></a>
+                    
+                </div>
+
+         </div>
+         
+     </section>
+      
+     <section class="section-three">
+
+            <div class="write-up">
+                <h4 class="ce"> Live life knowing all your goals are on track and being achieved</h4>
+                <ol>
+                    <li>Goals</li>
+                    <li>Daily Actions</li>
+                    <li>Achieve your dreams</li>
+                </ol>
+            </div>
+
+
+            <div class="image smile-image">
+                <img src="img/lady.png" alt="">
+            </div>
+   
+
+      </section>  
+
+      
+         <footer>
+             <img src="sponsor.png" alt="">
+         </footer>
+
+
+</body>
+</html>
