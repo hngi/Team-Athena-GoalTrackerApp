@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+@import url('https://fonts.googleapis.com/css?family=Serif');
+
+
+html, body{
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+}
+
+.intro{
+	height: 100%;
+	width: 100%;
+	margin: auto;
+	background: url(background.jpg)no-repeat;
+	display: table;
+	top: 0;
+	background-size: cover;
+}
+
+.intro .inner{
+	display: table-cell;
+	vertical-align: middle;
+	width: 100%;
+	max-width: none;
+}
+
+.content{
+	max-width: 500px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.content h1{
+	font-family: 'Poppins' , serif;
+	color: #fff;
+	text-shadow: 0px 0px 300px #000;
+	font-size: 500%;
+	
+}
+
+.content p{
+	font-family: 'Poppins' , serif;
+	color: #fff;
+	font-size: 16px;
+	text-align: center;
+	
+}
+
+.btn{
+	border-radius: 9px;
+	font-family: 'Poppins' , serif;
+	color: #036a81;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 10px 9px;
+	border: solid #036a81 3px;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+
+.btn:hover{
+	color: #fcf;
+	border: solid #fcf 3px;
+}
+
+
+
+@media screen and {max-width: 768px} {
+	.content h1{
+		font-size: 250%;
+	}
+	.btn{
+		font-size: 110%;
+		padding: 7px 15px;
+	}
+	
+}
