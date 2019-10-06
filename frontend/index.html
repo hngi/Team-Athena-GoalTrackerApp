@@ -12,42 +12,42 @@
     <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
 	<script src="js/vue.js"></script>
     <script src="js/axios.min.js"></script>
-    
     <style>
-        .card .card-body {
-            padding: 10px 10px;
-        }
-        .add-items {
-            margin-bottom: 0rem;
-            overflow: hidden;
-        }
-        .form-group {
-            margin-bottom: 0rem;
-        }
-        .nav-link{
-            font-weight: bold;
-        }
-        .navbar-brand{
-            font-weight: bold;
-            color: #FFF !important;
-        }
-        .navbar{
-            position: fixed;
-            z-index: 100;
-        }
-        .card-statistics h1{
-            color: #6AB21C !important;
-        }
+        [v-cloak] > * { display:none; }
+        [v-cloak]::before { content: "loading...";
+         }
 
-        @media screen and (min-width: 1000px){
-            .page-body-wrapper{
-                position: relative;
-                top: 50px;
-            }
-        }
-        [v-cloak]{
-            display: none;
-        }
+         hr {
+             margin-top: 20px;
+             width: 80%;
+         }
+
+         .or {
+             background: #fff;
+             width: 30px;
+             margin: -27px auto 10px;
+         }
+
+         button {
+             padding: 7px;
+             width: 100%;
+             box-sizing: border-box;
+             border: none;
+             font-size: 1em;
+             border-radius: 10px;
+             font-weight: bold;
+             background: blue;
+             margin-bottom: 20px;
+         }
+
+         button a {
+             text-decoration: none;
+             color: #fff;
+         }
+
+         button:hover {
+             background: rgba(0,0,0,0.6);
+         }
 
     </style>
 </head>
@@ -55,183 +55,69 @@
 <body>
 
     <div class="container-scroller" id="app">
-        <!-- Top Nav start -->
-        <div class="navbar horizontal-layout col-lg-12 col-12 p-0">
-            <div class="nav-top flex-grow-1">
-                <div class="container d-flex flex-row h-100 align-items-center">
-                    <div class="text-center navbar-brand-wrapper d-flex align-items-center">
-                        <a class="navbar-brand brand-logo" href="#">Athena</a>
-                        <a class="navbar-brand brand-logo-mini" href="#">Athena</a>
-                    </div>
-                    <div class="navbar-menu-wrapper d-flex align-items-center justify-content-between flex-grow-1">
-                        <form class="search-field d-none d-md-flex" action="#">
-                            <div class="form-group mb-0">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="icon-magnifier"></i></span>
-                                    </div>
-                                    <input type="text" class="form-control" placeholder="Search goal here...">
-                                </div>
-                            </div>
-                        </form>
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+            <div class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
+                <div class="row w-100 mx-auto">
+                    <div class="col-lg-4 mx-auto">
+                        <h2 class="text-center mb-4">Athena Goal Tracker</h2>
 
-                        <ul class="navbar-nav navbar-nav-right mr-0 ml-auto">
-                            <li class="nav-item nav-profile dropdown">
-                                <a class="nav-link " href="#" @click.prevent="logout">
-                                    <i class="icon-logout text-primary mr-2"></i> Logout
-                                </a>
-                            </li>
+                        <div class="auto-form-wrapper" v-cloak>
+                            <h3 class="text-center mb-4">Login</h3>
+
+                            <div v-if="errors !== null && errors !== undefined" class="alert alert-fill-danger" role="alert"> {{errors}} </div>
+                            <div v-if="success !== null && success !== undefined" class="alert alert-fill-success" role="alert" v-if="error !== ''"> {{success}} </div>
+
+                            <form @submit.prevent="login">
+                                <div class="form-group">
+                                    <label class="label">Username / Email</label>
+                                    <div class="input-group">
+                                        <input type="text" required v-model="form.username" class="form-control" placeholder="Username/Email">
+                                        <!-- <div class="input-group-append">
+                                            <span class="input-group-text"><i class="icon-check"></i></span>
+                                        </div> -->
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="label">Password</label>
+                                    <div class="input-group">
+                                        <input type="password" required v-model="form.password" class="form-control" placeholder="*********">
+                                        <!-- <div class="input-group-append">
+                                            <span class="input-group-text"><i class="icon-check"></i></span>
+                                        </div> -->
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" id="login-btn" class="btn btn-primary submit-btn btn-block">{{loading ? 'Please wait..' : 'Login'}}</button>
+                                </div>
+                                <div class="form-group d-flex justify-content-between">
+                                    <!--div class="form-check form-check-flat mt-0">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input" checked=""> Keep me signed in
+                                            <i class="input-helper"></i>
+                                        </label>
+                                    </div>
+                                    <a href="#" class="text-small forgot-password">Forgot Password</a-->
+                                </div>
+                                <hr>
+                                <p class="or">OR</p>
+                                <button><a href="#"><i class="fa fa-google">Login with Google</i></a></button>
+                                <div class="text-block text-center my-3">
+                                    <a href="forget_password.html" class="text-small forgot-password">Forgot Password</a> | 
+                                    <!-- <span class="text-small font-weight-semibold">Not a member ?</span> -->
+                                    <a href="register.html" class="text-small">Create new account</a>
+                                </div>
+                            </form>
+                        </div>
+                        <ul class="auth-footer">
+                            <li><a href="#">Conditions</a></li>
+                            <li><a href="#">Help</a></li>
+                            <li><a href="#">Terms</a></li>
                         </ul>
+                        <p class="footer-text text-center">Athena Goal Tracker</p>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- Top Nav ends -->
-    
-        <!-- partial -->
-        <div class="container-fluid page-body-wrapper">
-            <div class="main-panel">
-                <div class="content-wrapper">
-                    
-                    <!-- Statistics starts -->
-                    <div class="row">
-                        <div class="col-12 grid-margin">
-                            <div class="card card-statistics">
-                                <div class="card-body p-0">
-                                    <div class="row">
-                                        <div class="col-6 col-md-3 col-lg-3">
-                                            <div class="d-flex justify-content-between border-right card-statistics-item">
-                                                <div>
-                                                    <h1>{{statistics.totalGoals}}</h1>
-                                                    <p class="text-muted mb-0">Total Goals</p>
-                                                </div>
-                                                <i class="icon-layers text-primary icon-lg"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-6 col-md-3 col-lg-3">
-                                            <div class="d-flex justify-content-between border-right card-statistics-item">
-                                                <div>
-                                                    <h1>{{statistics.totalTodos}}</h1>
-                                                    <p class="text-muted mb-0">Total Todos</p>
-                                                </div>
-                                                <i class="icon-people text-primary icon-lg"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-6 col-md-3 col-lg-3">
-                                            <div class="d-flex justify-content-between border-right card-statistics-item">
-                                                <div>
-                                                    <h1>{{statistics.pendingTodos}}</h1>
-                                                    <p class="text-muted mb-0">Pending Todos</p>
-                                                </div>
-                                                <i class="icon-pin text-primary icon-lg"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-6 col-md-3 col-lg-3">
-                                            <div class="d-flex justify-content-between card-statistics-item">
-                                                <div>
-                                                    <h1>{{statistics.completedTodos}}</h1>
-                                                    <p class="text-muted mb-0">Completed Todos</p>
-                                                </div>
-                                                <i class="icon-refresh text-primary icon-lg"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Statistics ends -->
-
-
-                    
-                    <div class="row" v-cloak>
-                        <!-- Add Goal Starts -->
-                        <div class="col-12 grid-margin stretch-card">
-                            <div class="card">
-                                <div class="card-body">
-                                    <form class="" @submit.prevent="addGoal">
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <input type="text" required v-model="newGoal" class="form-control" placeholder="Add a new goal here.." aria-label="Recipient's username">
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-sm btn-success" type="submit">
-                                                            <i class="fa fa-plus"></i> Add Goal
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Add Goal Ends -->
-
-
-                        <!-- List goals start -->
-                        <div class="col-lg-4 grid-margin"  v-for="(goal, id) in goals" :key="id">
-                            <div class="card px-3">
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <div class="progress progress-lg">
-                                            <div :class="['progress-bar', color(goal.percentageComplete)]" role="progressbar" :style="`width: ${goal.percentageComplete}%`">
-                                                {{goal.percentageComplete}}% ({{goal.completeTodo}}/{{goal.totalTodo}}) completed
-                                            </div>
-                                        </div><br>
-                                        {{goal.goal}}
-                                    </h4>
-                                    <!-- <div class="progress progress-lg progress-bar bg-warning" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">60% completed</div> -->
-                                    
-                                    <form class="" @submit.prevent="addTodo(id)">
-                                        <div class="add-items d-flex">
-                                            <input type="text" required class="form-control todo-list-input" v-model="goal.newTodo" placeholder="Add a todo item">
-                                            <!-- <button class="add btn btn-primary font-weight-bold todo-list-add-btn" id="add-task">Add</button> -->
-                                            <button type="submit" class="btn btn-success btn-sm icon-btn ml-2 mb-2">
-                                                <i class="fa fa-plus"></i>
-                                            </button>
-                                            <button type="submit" class="btn btn-warning btn-sm icon-btn ml-2 mb-2">
-                                                <i class="fa fa-search"></i>
-                                            </button>
-                                        </div>
-                                    </form>
-
-                                    <!-- List todo starts -->
-                                    <div class="list-wrapper">
-                                        <ul class="d-flex flex-column-reverse todo-list">
-                                            <li  v-for="(todo, todoId) in goal.todo" :key="todoId">
-                                                <!-- <div class="form-check"> -->
-                                                <div class="">
-                                                    <!-- <label class="form-check-label"> -->
-                                                    <label class="">
-                                                        <input v-model="todo.completed" @change="completeTodo(id, todoId, $event)" class="" type="checkbox"> {{todo.todo}}
-                                                        <!-- <i class="input-helper"></i> -->
-                                                    </label>
-                                                </div>
-                                                <a href="#" class="remove " @click.prevent="deleteTodo(id, todoId)"><i class="fa fa-close" ></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <!-- List todo ends -->
-                                </div>
-                            </div>
-                        </div>
-                        <!-- List goals ends -->
-                                                    
-                    </div>                       
-
-                </div>
-                <!-- content-wrapper ends -->
-
-                
-                <!-- Footer starts -->
-                <footer class="footer">
-                    <div class="w-100 clearfix">
-                        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block"><a href="#" target="_blank">Athena Goal Tracker</a>. All rights reserved.</span>
-                    </div>
-                </footer>
-                <!-- Footer ends -->
-
-            </div>
-            <!-- main-panel ends -->
+            <!-- content-wrapper ends -->
         </div>
         <!-- page-body-wrapper ends -->
     </div>
@@ -241,166 +127,72 @@
         const app = new Vue({
             el: '#app',
             data: { 
-                backend: 'http://athena-goal-tracker.elitelovers.org/backend/public/api',  
-                dashboard: 'http://127.0.0.1:8080/todo',
+                //backend: 'http://127.0.0.1:8003/',  
+                backend: 'http://athena-goal-tracker.elitelovers.org/backend/public/',  
+                dashboard: './home.html',
                 loading: false,
                 success: null,
                 errors: null,
                 authenticated: false,
 
-                newGoal: '',
-                newTodo: '',
-                goals:[],
+                form:{
+                    username: '',
+                    password:'',
+                    client_secret: 'sPLysUnbbdVuxgVLaKQtVcU2hpZaIha1hRC2P67u',
+                    client_id: 2,
+                    grant_type: 'password'
+                }
+            },
 
-                statistics: {
-                    totalGoals: 0,
-                    totalTodos: 0,
-                    pendingTodos: 0,
-                    completedTodos: 0
-                }
-            },
-            watch: {
-                goals: {
-                    handler(val){
-                        this.updatePercentages();
-                    },
-                    deep: true
-                }
-            },
-            
             methods: {
-                getGoalswithTodos(){
-                    // axios.get(this.backend+'/goals')
+                login(){
+                    this.loading = true;
+					this.success = null;
+					this.errors = null;
+                    document.getElementById('login-btn').disabled = true;
                     
-                    let token = localStorage.getItem('hng_token');
-                    axios({
-                        method: 'GET',
-                        url: this.backend+'/goals',
-                        headers: {'Authorization': 'Bearer '+ token}
-                    })
-                    .then(response=> { this.goals = response.data.data;})
-                    .catch(error => console.log(error));
-                    
-                    // axios.get(this.backend+'/statistics')
-                    
-                    axios({
-                        method: 'GET',
-                        url: this.backend+'/statistics',
-                        headers: {'Authorization': 'Bearer '+ token}
-                    })
-                    .then(response=> { 
-                        this.statistics = {...response.data.data}; 
-                    })
-                    .catch(error => console.log(error));
-                },
-                addGoal(){
-                    let newGoal = {
-                            id: this.goals.length+1, goal: this.newGoal, todo:[], 
-                            percentagePending: 0, newTodo: '', percentageComplete: 0,
-                            totalTodo: 0, pendingTodo:0, completeTodo: 0
-                        }
-                    // axios.post(this.backend+'/goal/add', newGoal)
-                    
-                    let token = localStorage.getItem('hng_token');
-                    axios({
-                        method: 'POST',
-                        url: this.backend+'/goal/add',
-                        headers: {'Authorization': 'Bearer '+ token},
-                        data: newGoal
-                    })
+                    //SUBMIT FORM
+                    axios.post(this.backend+'oauth/token', this.form)
                     .then(response=>{
-                        this.getGoalswithTodos()
-                        this.newGoal = '';
+                        this.loading = false;
+                        localStorage.setItem('hng_token', response.data.access_token)
+                        localStorage.setItem('hng_expiration', response.data.expires_in + Date.now())
+                        this.authenticated = true;
+                        this.success = 'Login Successful'
+                        this.errors = null;
+                        // this.$router.push('/login')
+                        document.getElementById('login-btn').disabled = false;
+                        this.isAuth();
                     })
-                    .catch(error=> console.log(error));
+                    .catch(error=>{
+                        this.loading = false;
+                        this.success = null;
+                        document.getElementById('login-btn').disabled = false;
+                        this.errors = error.response.data.message == undefined ? 'Something went wrong please retry' : error.response.data.message;
                         
-                    // this.goals.push(newGoal);
-                },
-
-                addTodo(goalId){
-                    let goal = this.goals[goalId];
-                    let newTodo = {goal_id: goal.id, id: goal.todo.length+1, todo: goal.newTodo, completed: false};
-                    
-                    // axios.post(this.backend+'/todo/add', newTodo)
-                    
-                    let token = localStorage.getItem('hng_token');
-                    axios({
-                        method: 'POST',
-                        url: this.backend+'/todo/add',
-                        headers: {'Authorization': 'Bearer '+ token},
-                        data: newTodo
                     })
-                    .then(response=>{this.getGoalswithTodos()})
-                    .catch(error=> console.log(error));
+                },
+                
+                isAuth(){
+                    let token = localStorage.getItem('hng_token');
+                    let expiration = localStorage.getItem('hng_expiration');
 
-                    // this.goals[goal].todo.push(newTodo);
-                    // this.goals[goalId].newTodo = '';
-                },
-
-                deleteGoal(goalId){
-                    let goal = this.goals[goalId];
-                    
-                    // axios.post(this.backend+'/goal/remove', {goal_id: goal.id})
-                    
-                    let token = localStorage.getItem('hng_token');
-                    axios({
-                        method: 'POST',
-                        url: this.backend+'api/logout',
-                        headers: {'Authorization': 'Bearer '+ token},
-                        data: {goal_id: goal.id}
-                    })
-                    .then(response=>{this.getGoalswithTodos()})
-                    .catch(error=> console.log(error));
-                    // this.goals[goal].splice(goal, 1);
-                    // this.sendToBackend();
-                },
-                deleteTodo(goalId, todoId){
-                    let todo = this.goals[goalId].todo[todoId];
-                    let token = localStorage.getItem('hng_token');
-                    axios.post(this.backend+'/todo/remove', {todo_id: todo.id}, {headers: {'Authorization': 'Bearer '+ token}})
-                        .then(response=>{this.getGoalswithTodos()})
-                        .catch(error=> console.log(error));
-                    // this.goals[goal].todos.splice(todo, 1);
-                    // this.sendToBackend();
-                },
-                completeTodo(goalId, todoId, event){
-                    let token = localStorage.getItem('hng_token');
-                    let todo = this.goals[goalId].todo[todoId];
-                    axios.post(this.backend+'/todo/done', {todo_id: todo.id, is_done:event.target.checked}, {headers: {'Authorization': 'Bearer '+ token}})
-                        .then(response=>{this.getGoalswithTodos()})
-                        .catch(error=> console.log(error));
-                    // this.goals[goal].todos.completed = !this.goals[goal].todos.completed;
-                    // this.sendToBackend();
-                },
-                updatePercentages(){
-                    this.goals.forEach(
-                        (goal)=>{
-                            if(goal.todo.length !== undefined){
-                                let totalTodo = goal.todo.length;
-                                let pending =   goal.todo.filter((todo)=> todo.completed == 0 ).length;
-                                let completed = goal.todo.filter((todo)=> todo.completed == 1).length;
-                                goal.pendingTodo = pending;
-                                goal.totalTodo = totalTodo;
-                                goal.completeTodo = completed;
-                                goal.percentageComplete = this.round((completed/totalTodo) * 100);
-                                goal.percentagePending = this.round((pending/totalTodo) * 100);
-                            }
+                    if(! token || ! expiration) // check if token exists now or return null
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        if(Date.now() > parseInt(expiration)) // check if existing token has expired and return null if true or return true if otherwise
+                        {
+                            this.logout();
+                            return null;
                         }
-                    );
-                    // console.log(this.goals);
-                },
-                round(number, decimalPlace=2){
-                    let num = parseFloat(number);
-                    let rounded = Number(Math.round(num+'e'+decimalPlace)+'e-'+decimalPlace);
-                    return isNaN(rounded) ? 0 : rounded;
-                }, 
-                color(percent){
-                    return  percent >= 90 ? 'bg-success'
-                            : percent >= 70 ? 'bg-info'
-                            : percent >= 50 ? 'bg-primary'
-                            : percent >= 30 ? 'bg-warning'
-                            : percent < 30 ? 'bg-danger'
-                            : '';
+                        else
+                        {
+                            window.location.href = this.dashboard;
+                        }
+                    }
                 },
                 
                 logout(){
@@ -420,44 +212,36 @@
                     })
                     localStorage.removeItem('hng_token');
                     localStorage.removeItem('hng_expiration');
-                    
-                    window.location.href = './login.html';
-                    // this.$router.push('/login')
                 },                                              
                 
-                isAuth(){
-                    let token = localStorage.getItem('hng_token');
-                    let expiration = localStorage.getItem('hng_expiration');
-
-                    if(! token || ! expiration) // check if token exists now or return null
-                    {
-                        this.logout();
-                        return null;
-                    }
-                    else
-                    {
-                    if(Date.now() > parseInt(expiration)) // check if existing token has expired and return null if true or return true if otherwise
-                    {
-                        this.logout();
-                        return null;
-                    }
-                    else
-                    {
-                        this.getGoalswithTodos();
-                    }
-                    }
-                },
             },
 
             created(){
                 this.isAuth();
-                // this.getGoalswithTodos();
             },
 
             mounted () {
                 
             }
         })
+        
+        // window.onload(console.log(app.$options.methods.isAuth()));
     </script>
+    
+	<!-- Live chat -->
+	<script type="text/javascript">
+		window.__lc = window.__lc || {};
+		window.__lc.license = 11357752;
+		(function() {
+		  var lc = document.createElement('script'); lc.type = 'text/javascript'; lc.async = true;
+		  lc.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.livechatinc.com/tracking.js';
+		  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(lc, s);
+		})();
+	</script>
+	<noscript>
+	  <a href="https://www.livechatinc.com/chat-with/11357752/" rel="nofollow">Chat with us</a>,
+	  powered by <a href="https://www.livechatinc.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a>
+	</noscript>
+
   </body>
   <html>
