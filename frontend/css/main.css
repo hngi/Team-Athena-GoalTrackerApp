@@ -12,7 +12,9 @@ fieldset{
     background: white;
     width: 48%;
     margin: 0 auto;
-    border: none;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0px 20px 30px -20px;
 }
 h2{ 
     color:gray;
