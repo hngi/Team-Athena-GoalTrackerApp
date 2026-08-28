@@ -1,0 +1,124 @@
+body {
+    background: cornflowerblue;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+h1 {
+    color:white;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+}
+fieldset{
+    background: white;
+    width: 48%;
+    margin: 0 auto;
+    border: none;
+}
+h2{ 
+    color:gray;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0 auto;
+    padding: 1%;
+
+}
+
+
+.form{
+    margin: 0px auto;
+    width: 80%;
+    padding: 10px;
+}
+.label{
+    margin: 0;
+    text-align: left;
+
+}
+.input{
+    width: 50%; 
+    padding-bottom: 0px;
+    padding-left: 5px;
+    height: 1.8em;
+    margin: 5px auto;
+    font-size: 0.7em;
+    text-align: center;
+}
+#btn{
+    text-align: center;
+    color: white;
+    background-color: cornflowerblue;
+    font-size: 0.8rem;
+    border: none;
+    border-radius: 2px;
+    padding: 5px;
+    margin: 0 auto;
+}
+
+#btn:hover{
+    color:cornflowerblue;
+    background-color: #f1f1f1;
+    border: 2px solid cornflowerblue;
+}
+p {
+    font-size: 0.8em;
+}
+/*** Media Query***/
+@media (min-width:880px) and (max-width:1000px){
+    .container{
+        width: 100%
+
+    }
+    .input{
+        width: 70%;
+    }
+}
+@media (min-width:650px) and (max-width:880px){
+    .container{
+        width: 100%;
+    }
+    .input{
+        width: 87%;
+    }
+}
+@media (min-width:280px) and (max-width:650px){
+    #container{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        width: 100%;
+    }
+    .form-wrap{
+        width: 100%
+        fit-content
+    }
+    .input {
+        width: 90%;
+        font-size: 0.7em
+    }
+    .form{
+        margin: 0px auto;
+        width: 80%;
+        padding: 10px;
+    }
+    
+
+}
+
+a:active {
+    text-decoration: none;
+}
+
+a:link {
+    text-decoration: none;
+}
+a:visited {
+    text-decoration: none;
+    color: cornflowerblue;
+}
+a:hover {
+    background-color: gray;
+    color: aliceblue;
+    padding: 2px;}
+    a {
+        font-size: 0.7em;
+        display: inline;}
